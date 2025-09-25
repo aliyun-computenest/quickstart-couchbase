@@ -382,6 +382,8 @@ Metadata:
       - Parameters:
           - COUCHBASE_ADMINISTRATOR_PASSWORD
           - COUCHBASE_RBAC_PASSWORD
+        Label:
+          default: 数据库配置
       - Parameters:
           - ZoneId
           - VpcOption
