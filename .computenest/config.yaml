@@ -1,24 +1,72 @@
 Service:
-  RegionId: cn-hangzhou
   DeployType: ros
   DeployMetadata:
-    ServiceInstanceNameRule:
-      Prefix: couchbase
     SupplierDeployMetadata:
       ArtifactRelation:
-        'centos_7_9_x64_20G_alibase_20240403.vhd':
-          ArtifactId: ${Artifact.EcsImage.ArtifactId}
-          ArtifactVersion: ${Artifact.EcsImage.ArtifactVersion}
+        centos_7_9_x64_20G_alibase_20240403.vhd:
+          ArtifactId: ${Artifact.Artifact_1.ArtifactId}
+          ArtifactVersion: ${Artifact.Artifact_1.ArtifactVersion}
+      SupplierTemplateConfigs:
+        - Name: 单机版
+          Url: ros_templates/template.yaml
+          PredefinedParameters: []
+          AllowedRegions:
+            - cn-qingdao
+            - cn-beijing
+            - cn-zhangjiakou
+            - cn-huhehaote
+            - cn-wulanchabu
+            - cn-hangzhou
+            - cn-shanghai
+            - cn-heyuan
+            - cn-shenzhen
+            - cn-guangzhou
+            - cn-wuhan-lr
+            - cn-chengdu
+            - ap-southeast-1
     TemplateConfigs:
       - Name: 单机版
-        Url: 'ros_templates/template.yaml'
+        Url: ros_templates/template.yaml
+        AllowedRegions:
+          - cn-qingdao
+          - cn-beijing
+          - cn-zhangjiakou
+          - cn-huhehaote
+          - cn-wulanchabu
+          - cn-hangzhou
+          - cn-shanghai
+          - cn-heyuan
+          - cn-shenzhen
+          - cn-guangzhou
+          - cn-wuhan-lr
+          - cn-chengdu
+          - ap-southeast-1
+        PredefinedParameters: []
+        DeployScene: ECS
+        OutputConfigs:
+          - OutputKey: __biubiu__
+            EnableWebProxy: false
+    NetworkMetadata:
+      EnablePrivateVpcConnection: false
+      EnableReversePrivateVpcConnection: false
+    ServiceInstanceNameRule:
+      Prefix: couchbase
+      UseDefaultValue: false
+  OperationMetadata:
+    SupportBackup: false
+    PrometheusConfigMap:
+      单机版:
+        EnablePrometheus: false
   ServiceType: private
   ServiceInfo:
     Locale: zh-CN
-    ShortDescription: couch deploy
-    Image: 'resources/icons/service_logo.png'
+    ShortDescription: Couchbase 是一个屡获殊荣的分布式 NoSQL 开发者数据库平台，可为您的关键应用程序提供无与伦比的多功能性、性能、可扩展性和经济价值。Couchbase 拥抱 AI，为开发者提供编码辅助，以及用于构建应用程序的 AI 服务，包括由 RAG 驱动的代理、实时分析和云到边缘的矢量搜索。
+    Image: resources/icons/service_logo.png
+    Name: Couchbase社区版
+  ShareType: Public
+  ApprovalType: Manual
 Artifact:
-  EcsImage:
+  Artifact_1:
     ArtifactType: EcsImage
     ArtifactName: couchbase
     Description: couchbase
